@@ -1,0 +1,185 @@
+\documentclass[12pt]{article}
+\usepackage{graphicx}
+
+\oddsidemargin  -0.5 cm
+\evensidemargin 0.0 cm
+\textwidth      6.5in
+\headheight     0.0in
+\topmargin      -1 cm
+\textheight=9in
+
+\renewcommand{\arraystretch}{1.25}
+
+\title{Alignment of the CMS Muon Endcap \\ with Tracks in Overlapping
+  Pairs of Chambers \\ (CMS Note version)}
+\author{Jim Pivarski, Alexei Safonov, Karoly Banicz}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We present a method for aligning the endcap muon chambers (and the
+layers within them) using tracks that pass through pairs of
+neighboring chambers in the same ring.  A muons's trajectory within an
+endcap ring doesn't pass through any thick layers of iron, so the
+trajectories of these tracks are nearly free of multiple scattering
+effects and are therefore highly predictable.  Included in this Note
+are results from Monte Carlo simulations and from real beam-halo data
+from the September~2008 run of the LHC, in which we demonstrate a
+270~$\mu$m $r\phi$-alignment of chambers using tracks from 9~minutes of
+collected beam.  This is roughly the intrinsic resolution of the
+chambers and within the scope of our ``long-term'' alignment goals.
+
+\end{abstract}
+
+\section{Motivation, Geometry, and Coordinate Systems}
+
+The momentum resolution of any tracking system is determined by the
+intrinsic hit resolution its subdetectors and one's knowledge of the
+positions of those subdetectors in space.  Since these two sources of
+uncertainty add in quadrature for any charged particle track, they
+tend to be dominated by the worst of the two.  The 200--300~$\mu$m hit
+resolution of the Cathode Strip Chambers (CSCs) in the CMS endcap muon
+system has been well demonstrated by studies of the chambers in
+isolation~\cite{intrinsic_resolution}.  Now that the whole CMS
+detector has been assembled and is taking data, it is important to
+learn the relative positions of all its elements (that is, ``align the
+detector'') with the same degree of accuracy.
+
+\subsection{Methods of Alignment and their Motivations}
+
+There are several independent approaches to alignment, and they can be
+used to verify one another.  The first and most straight-forward is
+photogrammetry: hundreds of high-precision photographs were taken of
+the assembled system and fed into a computer to fit for the positions
+of all the chambers.  Two alignment pins are built into each CSC; they
+are physically attached to all the layers that sense the passage of
+charged particles and are visible from the outside.  Every pin was
+capped with a reflective disk and illuminated with a bright light, so
+that they glowed as easy-to-reconstruct circles in the photographs.
+Though the disks are about a centimeter in radius, their centers were
+reconstructed with a precision of about
+300~$\mu$m~\cite{photogrammetry}.
+
+Unfortunately, photogrammetry can only be performed while the muon
+system is ``open,'' before the largest components are slid into place
+(leaving no room for cameras) and the magnetic field is turned on.
+The CMS magnetic field has a profound effect on the shape of the
+detector, applying forces on the thick iron disks of the endcap which
+are many times their weight, bending them by a centimeter in the
+middle.  Under these forces, the individual chambers might shift
+unpredictably, invalidating the photogrammetry result.  We must
+therefore be able to align the system again while it is in operation.
+
+To achieve this, the detector is also instrumented with
+continuously-active alignment devices--- lasers, digital sensors,
+inclinometers (like a carpenter's level), and mechanical calipers.
+All of this information is read out in a separate stream from the
+detector data and compiled into a global geometry description.  The
+Muon Hardware Alignment System (MHAS) therefore has the following
+advantages:
+\begin{itemize}
+\item it measures positions using physical instruments, as a ruler
+  would,
+\item it can observe the evolution of the system from the state
+  measured by photogrammetry into a state where it can start taking
+  data,
+\item and it can measure any component of displacement, including
+  those that are parallel to the trajectories of charged particle
+  tracks.
+\end{itemize}
+However, the MHAS only monitors the positions of 6 out of the 18 to 36
+chambers in each endcap ring, and requires great care to translate
+device read-outs into global chamber positions.  To derive a geometry
+which is useful for track reconstruction, the measurements must be
+propagated in two directions: outward to all the other tracking systems,
+through a diverse chain of devices, and inward from the devices
+mounted on the chamber frames to the sensitive layers which actually
+measure the passage of charged particles.  These issues are being
+studied carefully, but for a complete understanding of the muon system
+alignment, we will need another independent method.
+
+A standard technique is to use the tracks measured by the detector
+itself for alignment.  Muon tracks from LHC collisions traverse the
+entire CMS detector in a continuous line, simplifying the alignment of
+distant subdetectors, such as the muon system and the central silicon
+tracker.  Also, the local hit measurements that make up a track are
+automatically in the right coordinate systems for aligning the
+sensitive components, rather than their physical structures.
+Track-based alignment methods involve a cycle of fitting tracks with a
+trial detector alignment, observing systematic offsets in the hit
+residuals (difference between the best-fit track prediction and the
+hit measurement on a given detector element), and using these to
+correct the trial alignment.  Sometimes the cycle is an explicit
+iterative loop, and sometimes it is a combined fit.
+
+Track-based alignment also has its challenges, in that
+track-propagation errors limit the precision and accuracy of the
+detector alignment.  Multiple scattering in the iron return yoke of
+the CMS solenoid introduces an independent error into each track,
+broadening the residuals distributions, making it harder to see the
+offset in the mean due to misalignment.  This type of uncertainty can
+be cured with high statistics.  More serious are systematic
+distortions to all tracks passing through a given region of the
+detector, such as an error in the magnetic field description or a
+misalignment in a part of the silicon tracker.  In these cases, one
+might accidentally absorb non-misalignment errors into the detector
+geometry, making it harder to solve these problems.  Fortunately, we
+can also identify them using a number of track-based techniques,
+including
+\begin{itemize}
+\item closed loops of relative alignment measurements ($B$ relative to
+  $A$ and $C$ relative to $A$ compared to $B$ relative to $C$) using
+  a broad distribution of track entrance angles (cosmic rays),
+\item distinguishing magnetic field effects, which vary as a function
+  of momentum ($\vec{B}\times\vec{p}$) and flip sign with charge, from
+  misalignment effects which are independent of the set of tracks
+  used in the study,
+\item identifying the smoking gun of a real misalignment by observing
+  the discontinuity in residuals at the known boundaries between detectors,
+\item and averaging over localized errors by combining tracks from a
+  large tracking volume in a single alignment measurement.
+\end{itemize}
+Most of these techniques are beyond the scope of this Note, and will
+be described in a follow-up document on track-based muon alignment in
+general.  They are part of an ongoing, integrated project of aligning
+all the tracking systems and correcting errors in CMS's global track
+model.
+
+In this Note, we will present one completed part of the project, the
+development of a procedure to align CSCs in the endcap rings using
+tracks that pass through overlapping chambers.  This ``CSC Overlaps''
+alignment procedure avoids all of the above issues because it depends
+only on the parts of the tracks that are between thick layers of iron,
+where multiple scattering is negligible and the magnetic field is
+parallel to the beamline (because it jumps across the air gap through
+the chambers, minimizing the lengths of its field lines).  This
+procedure is both precise in a statistical sense because the minimal
+multiple scattering leads to narrow residuals distributions, and is
+proven to be accurate because it exactly reproduces the geometry known
+from photogrammetry.  It demonstrates that we will be able to very
+quickly align the endcaps with LHC beam-halo or collisions, in that
+the so-called ``long-term'' (or ``100~pb$^{-1}$'') goal of
+200--300~$\mu$m accuracy is achieved in 9~minutes of LHC beam from the
+short September~2008 run.
+
+\subsection{Geometry and Coordinates of the Muon Endcap System}
+
+
+
+
+
+\section{Track-based Method in Detail}
+\label{sec:details}
+
+\section{Simulation Results}
+
+\section{Real-Data Results}
+
+\section{Preliminary Results for Layer Alignment}
+
+\section{Concluding Remarks}
+
+
+
+\end{document}
